@@ -3,12 +3,14 @@ shiny-prompt
 
 ![Screenshot of terminal](https://raw.githubusercontent.com/codenameyau/shiny-prompt/screenshot/screenshot/shiny-prompt.png)
 
-###Prompt features:
-* displays the active python virtualenv
-* displays the current branch of a git/mercurial repository
-* displays the timestamp of a command
-* displays the return value of the previous command
-* displays a newline after each command
+###Prompt displays:
+* a newline before each command
+* the active python virtualenv
+* the user and host information
+* the timestamp of the command
+* the shortened current directory
+* the current branch of a git/mercurial repository
+* the return value of the previous command (white=0, red=1)
 
 ###Installation
 
