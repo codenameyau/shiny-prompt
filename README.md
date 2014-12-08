@@ -1,6 +1,8 @@
 shiny-prompt
 ============
 
+![Screenshot of terminal](https://raw.githubusercontent.com/codenameyau/shiny-prompt/screenshot/screenshot/shiny-prompt.png)
+
 ###Prompt features:
 * displays the active python virtualenv
 * displays the current branch of a git/mercurial repository
@@ -10,8 +12,8 @@ shiny-prompt
 
 ###Installation
 
-1. Save `.bash_prompt` in your home directory
-2. Add the following line at the end of your `.bashrc`:
+1. Save [`.bash_prompt`](https://github.com/codenameyau/shiny-prompt/blob/master/src/.bash_prompt) in your home directory
+2. Add the following line to your `.bashrc`:
    `. ~/.bash_prompt`
 3. Open a new terminal
 
