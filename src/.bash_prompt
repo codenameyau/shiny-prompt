@@ -24,9 +24,9 @@
 #
 
 
-#################################
-# Escape codes for color prompt #
-#################################
+################################################################
+# Color Escape Codes
+################################################################
         RED="\[\033[1;31m\]"
      YELLOW="\[\033[1;33m\]"
       GREEN="\[\033[1;32m\]"
@@ -39,9 +39,9 @@ LIGHT_GREEN="\[\033[1;32m\]"
  COLOR_NONE="\[\e[0m\]"
 
 
-##############################
-# Color based on return code #
-##############################
+################################################################
+# Return Code Color
+################################################################
 function set_prompt_symbol () {
   if test $1 -eq 0 ; then
       PROMPT_SYMBOL="${WHITE}\$${COLOR_NONE}"
@@ -51,19 +51,19 @@ function set_prompt_symbol () {
 }
 
 
-################################
-# Display git/mercurial branch #
-################################
-function parse_git_branch(){
+################################################################
+# Git / Mercurial branch
+################################################################
+function parse_git_branch () {
   git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/ (\1)/'
 }
 
-function parse_hg_branch(){
+function parse_hg_branch () {
   hg branch 2> /dev/null | awk '{print " (" $1 ")"}'
 }
 
 # Determines the branch for this repository.
-function set_git_branch() {
+function set_git_branch () {
   # Get the name of the branch.
   branch=$(parse_git_branch)
 
@@ -77,9 +77,9 @@ function set_git_branch() {
 }
 
 
-#############################
-# Display Python virtualenv #
-#############################
+################################################################
+# Python virtualenv
+################################################################
 function set_virtualenv () {
   if test -z "$VIRTUAL_ENV" ; then
       PYTHON_VIRTUALENV=""
@@ -89,9 +89,9 @@ function set_virtualenv () {
 }
 
 
-##############################
-# Display prompt information #
-##############################
+################################################################
+# General Prompt Information
+################################################################
 function set_information () {
   USER_INFO="${GREEN}\u@\h ${YELLOW}(\@)${COLOR_NONE} "
 }
@@ -102,29 +102,28 @@ function set_directory () {
 }
 
 
-#########################
-# Configure Bash prompt #
-#########################
+################################################################
+# Configure Bash Prompt
+################################################################
 function set_bash_prompt () {
-  # Set the PROMPT_SYMBOL variable
-  # We do this first so we don't lose the return value of the last command.
+  # Do this first so we don't lose the return value of the last command.
   set_prompt_symbol $?
 
-  # Set the PYTHON_VIRTUALENV variable
+  # Set the PYTHON_VIRTUALENV variable.
   set_virtualenv
 
-  # Set the BRANCH variable
+  # Set the BRANCH variable.
   set_git_branch
 
-  # Set user, host, time
+  # Set user, host, time.
   set_information
 
-  # Set current directory
+  # Set current directory.
   set_directory
 
-  # Set the bash prompt variable
+  # Set the bash prompt variable.
   PS1="\n${PYTHON_VIRTUALENV}${USER_INFO}${DIR_INFO}${BRANCH}${PROMPT_SYMBOL} "
 }
 
-# Execute this function just before bash displays its prompt
+# Execute this function before bash displays its default prompt.
 PROMPT_COMMAND=set_bash_prompt
