@@ -15,9 +15,12 @@ shiny-prompt
 ###Installation
 
 1. Save [`.bash_prompt`](https://github.com/codenameyau/shiny-prompt/blob/master/src/.bash_prompt) in your home directory
-2. Add the following line to your `.bashrc`:
-   `. ~/.bash_prompt`
-3. Open a new terminal
+2. Add the following line to your `~/.bashrc`
+```bash
+. ~/.bash_prompt
+```
+
+Lastly open a new terminal.
 
 ###Legacy
 Based on the work by woods and miki725.
