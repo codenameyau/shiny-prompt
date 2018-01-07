@@ -12,18 +12,19 @@ shiny-prompt
 ### Installation
 
 Download this file to your home directory. Pick one.
+
+#### Features: git branch, mercurial branch, python venv
 ```bash
-# Features: git branch, mercurial branch, python venv
 wget -O ~/.bash_prompt https://raw.githubusercontent.com/codenameyau/shiny-prompt/master/src/.bash_prompt
 ```
 
+#### Features: git branch
 ```bash
-# Features: git branch
 wget -O ~/.bash_prompt https://raw.githubusercontent.com/codenameyau/shiny-prompt/master/src/.bash_prompt--git-only
 ```
 
+#### Features: git branch, purple hostname
 ```bash
-# Features: git branch, purple hostname
 wget -O ~/.bash_prompt https://raw.githubusercontent.com/codenameyau/shiny-prompt/master/src/.bash_prompt--git-only-ssh
 ```
 
