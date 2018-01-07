@@ -3,26 +3,22 @@ shiny-prompt
 
 ![Screenshot of terminal](https://raw.githubusercontent.com/codenameyau/shiny-prompt/screenshot/screenshot/shiny-prompt.png)
 
-###Prompt displays:
-* a newline before each command
-* the active python virtualenv
-* the user and host information
-* the timestamp of the command
-* the shortened current directory
-* the current branch of a git/mercurial repository
-* the return value of the previous command (white=0, red=1)
+### Prompt features:
+* displays a newline before each command
+* displays the active python virtualenv
+* displays the current branch of a git or mercurial repository
+* displays the return value of the previous command in `$` (white=0, red=1)
 
-###Installation
+### Installation
 
-1. Save [`.bash_prompt`](https://github.com/codenameyau/shiny-prompt/blob/master/src/.bash_prompt) in your home directory
-2. Add the following line to your `~/.bashrc`
+Download this file to your home directory.
 ```bash
-. ~/.bash_prompt
+wget -P $HOME https://github.com/codenameyau/shiny-prompt/blob/master/src/.bash_prompt
 ```
 
-Lastly open a new terminal.
+Add this line to your `.bashrc` (Linux) or `.bash_profile` (Mac)
+```bash
+echo "source ~/.bash_prompt" >> .bashrc
+```
 
-###Legacy
-Based on the work by woods and miki725.
-
-Feel free to fork and create your own custom prompt.
+Lastly open a new terminal or source your `.bashrc`.
