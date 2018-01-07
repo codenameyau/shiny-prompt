@@ -14,13 +14,17 @@ shiny-prompt
 Download this file to your home directory. Pick one.
 ```bash
 # Features: git branch, mercurial branch, python venv
-wget -P $HOME https://github.com/codenameyau/shiny-prompt/blob/master/src/.bash_prompt -O .bash_prompt
+wget -O ~/.bash_prompt https://raw.githubusercontent.com/codenameyau/shiny-prompt/master/src/.bash_prompt
+```
 
+```bash
 # Features: git branch
-wget -P $HOME https://github.com/codenameyau/shiny-prompt/blob/master/src/.bash_prompt--git-only -O .bash_prompt
+wget -O ~/.bash_prompt https://raw.githubusercontent.com/codenameyau/shiny-prompt/master/src/.bash_prompt--git-only
+```
 
+```bash
 # Features: git branch, purple hostname
-wget -P $HOME https://github.com/codenameyau/shiny-prompt/blob/master/src/.bash_prompt--git-only-ssh -O .bash_prompt
+wget -O ~/.bash_prompt https://raw.githubusercontent.com/codenameyau/shiny-prompt/master/src/.bash_prompt--git-only-ssh
 ```
 
 Add this line to your `.bashrc` (Linux) or `.bash_profile` (Mac)
