@@ -11,9 +11,16 @@ shiny-prompt
 
 ### Installation
 
-Download this file to your home directory.
+Download this file to your home directory. Pick one.
 ```bash
-wget -P $HOME https://github.com/codenameyau/shiny-prompt/blob/master/src/.bash_prompt
+# Features: git branch, mercurial branch, python venv
+wget -P $HOME https://github.com/codenameyau/shiny-prompt/blob/master/src/.bash_prompt -O .bash_prompt
+
+# Features: git branch
+wget -P $HOME https://github.com/codenameyau/shiny-prompt/blob/master/src/.bash_prompt--git-only -O .bash_prompt
+
+# Features: git branch, purple hostname
+wget -P $HOME https://github.com/codenameyau/shiny-prompt/blob/master/src/.bash_prompt--git-only-ssh -O .bash_prompt
 ```
 
 Add this line to your `.bashrc` (Linux) or `.bash_profile` (Mac)

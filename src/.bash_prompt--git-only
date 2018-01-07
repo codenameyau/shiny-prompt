@@ -5,8 +5,7 @@
 # DESCRIPTION:
 #
 #   Bash prompt features:
-#    * displays the active python virtualenv
-#    * displays the current branch of a git/mercurial repository
+#    * displays the current branch of a git repository
 #    * displays the timestamp of a command
 #    * displays the return value of the previous command
 #    * displays newline after each command
@@ -31,7 +30,7 @@ LIGHT_GREEN="\[\033[1;32m\]"
 # Return Code Color
 ################################################################
 function set_prompt_symbol () {
-  if test $1 -eq 0 ; then
+  if test "$1" -eq 0 ; then
       PROMPT_SYMBOL="${WHITE}\$${COLOR_NONE}"
   else
       PROMPT_SYMBOL="${LIGHT_RED}\$${COLOR_NONE}"
@@ -46,34 +45,13 @@ function parse_git_branch () {
   git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/ (\1)/'
 }
 
-function parse_hg_branch () {
-  hg branch 2> /dev/null | awk '{print " (" $1 ")"}'
-}
-
 # Determines the branch for this repository.
 function set_git_branch () {
   # Get the name of the branch.
   branch=$(parse_git_branch)
 
-  # if not git then check mercurial
-  if [ "$branch" == "" ] ; then
-    branch=$(parse_hg_branch)
-  fi
-
   # Set the final branch string.
   BRANCH="${LIGHT_RED}${branch}${COLOR_NONE} "
-}
-
-
-################################################################
-# Python virtualenv
-################################################################
-function set_virtualenv () {
-  if test -z "$VIRTUAL_ENV" ; then
-      PYTHON_VIRTUALENV=""
-  else
-      PYTHON_VIRTUALENV="${LIGHT_RED}[`basename \"$VIRTUAL_ENV\"`]${COLOR_NONE} "
-  fi
 }
 
 
@@ -96,9 +74,6 @@ function set_directory () {
 function set_bash_prompt () {
   # Do this first so we don't lose the return value of the last command.
   set_prompt_symbol $?
-
-  # Set the PYTHON_VIRTUALENV variable.
-  set_virtualenv
 
   # Set the BRANCH variable.
   set_git_branch
