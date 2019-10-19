@@ -1,7 +1,7 @@
 shiny-prompt
 ============
 
-![Screenshot of terminal](https://raw.githubusercontent.com/codenameyau/shiny-prompt/screenshot/screenshot/shiny-prompt.png)
+![Screenshot of terminal](https://user-images.githubusercontent.com/3826772/67151641-f0c57780-f296-11e9-8ce4-0a19f5ce598d.png)
 
 ### Prompt features:
 * displays a newline before each command
