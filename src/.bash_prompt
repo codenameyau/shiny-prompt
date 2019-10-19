@@ -28,13 +28,21 @@ LIGHT_GREEN="\[\033[1;32m\]"
 
 
 ################################################################
+# Window title
+################################################################
+function set_window_title () {
+  window_title="\033]0; ${PWD##*/} \a"
+}
+
+
+################################################################
 # Return Code Color
 ################################################################
 function set_prompt_symbol () {
   if test $1 -eq 0 ; then
-      PROMPT_SYMBOL="${WHITE}\$${COLOR_NONE}"
+    exit_code="${WHITE}\$${COLOR_NONE}"
   else
-      PROMPT_SYMBOL="${LIGHT_RED}\$${COLOR_NONE}"
+    exit_code="${LIGHT_RED}\$${COLOR_NONE}"
   fi
 }
 
@@ -61,7 +69,7 @@ function set_git_branch () {
   fi
 
   # Set the final branch string.
-  BRANCH="${LIGHT_RED}${branch}${COLOR_NONE} "
+  branch="${LIGHT_RED}${branch}${COLOR_NONE} "
 }
 
 
@@ -70,9 +78,9 @@ function set_git_branch () {
 ################################################################
 function set_virtualenv () {
   if test -z "$VIRTUAL_ENV" ; then
-      PYTHON_VIRTUALENV=""
+    python_env=""
   else
-      PYTHON_VIRTUALENV="${LIGHT_RED}[`basename \"$VIRTUAL_ENV\"`]${COLOR_NONE} "
+    python_env="${LIGHT_RED}[`basename \"$VIRTUAL_ENV\"`]${COLOR_NONE} "
   fi
 }
 
@@ -81,12 +89,12 @@ function set_virtualenv () {
 # General Prompt Information
 ################################################################
 function set_information () {
-  USER_INFO="${GREEN}\u@\h ${YELLOW}(\@)${COLOR_NONE} "
+  user_info="${GREEN}\u@\h ${YELLOW}(\@)${COLOR_NONE} "
 }
 
 function set_directory () {
   # Change \W to \w for full directory
-  DIR_INFO="${BLUE}\W${COLOR_NONE}"
+  dir_info="${BLUE}\W${COLOR_NONE}"
 }
 
 
@@ -97,10 +105,13 @@ function set_bash_prompt () {
   # Do this first so we don't lose the return value of the last command.
   set_prompt_symbol $?
 
-  # Set the PYTHON_VIRTUALENV variable.
+  # Set the window title.
+  set_window_title
+
+  # Set the python_env variable.
   set_virtualenv
 
-  # Set the BRANCH variable.
+  # Set the branch variable.
   set_git_branch
 
   # Set user, host, time.
@@ -110,7 +121,7 @@ function set_bash_prompt () {
   set_directory
 
   # Set the bash prompt variable.
-  PS1="\n${PYTHON_VIRTUALENV}${USER_INFO}${DIR_INFO}${BRANCH}${PROMPT_SYMBOL} "
+  PS1="${window_title} \n${python_env}${user_info}${dir_info}${branch}${exit_code} "
 }
 
 # Execute this function before bash displays its default prompt.
