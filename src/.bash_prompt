@@ -1,15 +1,14 @@
 #!/bin/bash
 #
 # GNU General Public License
+# Jorge Yau <codenameyau@gmail.com>
 #
-# DESCRIPTION:
-#
-#   Bash prompt features:
-#    * displays the active python virtualenv
-#    * displays the current branch of a git/mercurial repository
-#    * displays the timestamp of a command
-#    * displays the return value of the previous command
-#    * displays newline after each command
+# Bash prompt features:
+#   - displays the current directory as title
+#   - displays the active python virtualenv
+#   - displays the current branch of a git or mercurial repository
+#   - displays the timestamp of a command
+#   - displays the exit code of the previous command
 #
 
 ################################################################
@@ -59,7 +58,7 @@ function parse_hg_branch () {
 }
 
 # Determines the branch for this repository.
-function set_git_branch () {
+function set_branch () {
   # Get the name of the branch.
   branch=$(parse_git_branch)
 
@@ -112,7 +111,7 @@ function set_bash_prompt () {
   set_virtualenv
 
   # Set the branch variable.
-  set_git_branch
+  set_branch
 
   # Set user, host, time.
   set_information
