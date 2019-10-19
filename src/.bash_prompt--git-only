@@ -1,14 +1,13 @@
 #!/bin/bash
 #
 # GNU General Public License
+# Jorge Yau <codenameyau@gmail.com>
 #
-# DESCRIPTION:
-#
-#   Bash prompt features:
-#    * displays the current branch of a git repository
-#    * displays the timestamp of a command
-#    * displays the return value of the previous command
-#    * displays newline after each command
+# Bash prompt features:
+#   - displays the current directory as title
+#   - displays the current branch of a git repository
+#   - displays the timestamp of a command
+#   - displays the exit code of the previous command
 #
 
 ################################################################
@@ -27,13 +26,21 @@ LIGHT_GREEN="\[\033[1;32m\]"
 
 
 ################################################################
+# Window title
+################################################################
+function set_window_title () {
+  window_title="\033]0; ${PWD##*/} \a"
+}
+
+
+################################################################
 # Return Code Color
 ################################################################
 function set_prompt_symbol () {
   if test "$1" -eq 0 ; then
-      PROMPT_SYMBOL="${WHITE}\$${COLOR_NONE}"
+    exit_code="${WHITE}\$${COLOR_NONE}"
   else
-      PROMPT_SYMBOL="${LIGHT_RED}\$${COLOR_NONE}"
+    exit_code="${LIGHT_RED}\$${COLOR_NONE}"
   fi
 }
 
@@ -46,12 +53,12 @@ function parse_git_branch () {
 }
 
 # Determines the branch for this repository.
-function set_git_branch () {
+function set_branch () {
   # Get the name of the branch.
   branch=$(parse_git_branch)
 
   # Set the final branch string.
-  BRANCH="${LIGHT_RED}${branch}${COLOR_NONE} "
+  branch="${LIGHT_RED}${branch}${COLOR_NONE} "
 }
 
 
@@ -59,12 +66,12 @@ function set_git_branch () {
 # General Prompt Information
 ################################################################
 function set_information () {
-  USER_INFO="${GREEN}\u@\h ${YELLOW}(\@)${COLOR_NONE} "
+  user_info="${GREEN}\u@\h ${YELLOW}(\@)${COLOR_NONE} "
 }
 
 function set_directory () {
   # Change \W to \w for full directory
-  DIR_INFO="${BLUE}\W${COLOR_NONE}"
+  dir_info="${BLUE}\W${COLOR_NONE}"
 }
 
 
@@ -75,8 +82,11 @@ function set_bash_prompt () {
   # Do this first so we don't lose the return value of the last command.
   set_prompt_symbol $?
 
-  # Set the BRANCH variable.
-  set_git_branch
+  # Set the window title.
+  set_window_title
+
+  # Set the branch variable.
+  set_branch
 
   # Set user, host, time.
   set_information
@@ -85,7 +95,7 @@ function set_bash_prompt () {
   set_directory
 
   # Set the bash prompt variable.
-  PS1="\n${PYTHON_VIRTUALENV}${USER_INFO}${DIR_INFO}${BRANCH}${PROMPT_SYMBOL} "
+  PS1="${window_title} \n${user_info}${dir_info}${branch}${exit_code} "
 }
 
 # Execute this function before bash displays its default prompt.

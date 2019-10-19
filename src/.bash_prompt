@@ -38,7 +38,7 @@ function set_window_title () {
 # Return Code Color
 ################################################################
 function set_prompt_symbol () {
-  if test $1 -eq 0 ; then
+  if test "$1" -eq 0 ; then
     exit_code="${WHITE}\$${COLOR_NONE}"
   else
     exit_code="${LIGHT_RED}\$${COLOR_NONE}"
@@ -79,7 +79,7 @@ function set_virtualenv () {
   if test -z "$VIRTUAL_ENV" ; then
     python_env=""
   else
-    python_env="${LIGHT_RED}[`basename \"$VIRTUAL_ENV\"`]${COLOR_NONE} "
+    python_env="${LIGHT_RED}[$(basename "$VIRTUAL_ENV")]${COLOR_NONE} "
   fi
 }
 
