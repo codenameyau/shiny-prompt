@@ -88,7 +88,7 @@ function set_virtualenv () {
 # General Prompt Information
 ################################################################
 function set_information () {
-  user_info="${YELLOW}(\D{%m/%d %H:%M})${COLOR_NONE} 🦄 "
+  user_info="${YELLOW}(\D{%m/%d %H:%M})${COLOR_NONE} "
 }
 
 function set_directory () {

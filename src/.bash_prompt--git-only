@@ -66,7 +66,7 @@ function set_branch () {
 # General Prompt Information
 ################################################################
 function set_information () {
-  user_info="${GREEN}\u@\h ${YELLOW}(\@)${COLOR_NONE} "
+  user_info="${YELLOW}(\D{%m/%d %H:%M})${COLOR_NONE} "
 }
 
 function set_directory () {
