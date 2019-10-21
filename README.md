@@ -14,7 +14,7 @@
 Download this file to your home directory. You can pick another prompt in src.
 
 ```bash
-wget -O ~/.bash_prompt https://raw.githubusercontent.com/codenameyau/shiny-prompt/master/src/.bash_prompt
+wget -N -O ~/.bash_prompt https://raw.githubusercontent.com/codenameyau/shiny-prompt/master/src/.bash_prompt
 ```
 
 Add this line to your `.bashrc` (Linux) or `.bash_profile` (Mac)
